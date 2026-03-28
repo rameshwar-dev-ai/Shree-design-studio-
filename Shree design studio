@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shree Design Studio | Architecture & Interior Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-off-white: #f9f9f9;
+            --text-charcoal: #333333;
+            --accent-gold: #c5a059;
+            --light-gray: #e8e8e8;
+            --medium-gray: #888888;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-off-white);
+            color: var(--text-charcoal);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(249, 249, 249, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--text-charcoal);
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-charcoal);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 1px;
+            background: var(--text-charcoal);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e0e0e0 0%, #f0f0f0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="none" stroke="%23c5a059" stroke-width="0.5" x="20" y="20" width="60" height="60"/></svg>');
+            background-size: 200px;
+            opacity: 0.1;
+        }
+
+        .hero-placeholder {
+            width: 80%;
+            height: 70%;
+            border: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.5);
+            position: relative;
+        }
+
+        .hero-placeholder::after {
+            content: 'Architecture Photography';
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--medium-gray);
+            font-size: 1.2rem;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            background: rgba(249, 249, 249, 0.9);
+            padding: 4rem 6rem;
+            border: 1px solid var(--light-gray);
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-charcoal);
+            letter-spacing: 1px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--medium-gray);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: var(--accent-gold);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 8rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background: var(--accent-gold);
+        }
+
+        .section-header p {
+            color: var(--medium-gray);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 1.5rem;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            background: white;
+            border-top: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .philosophy-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .philosophy-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .philosophy-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .rating-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 2rem;
+            border: 1px solid var(--light-gray);
+            background: var(--bg-off-white);
+        }
+
+        .stars {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .rating-text {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+        }
+
+        .philosophy-image {
+            height: 500px;
+            border: 1px solid var(--light-gray);
+            background: linear-gradient(135deg, #f5f5f5 0%, #fafafa 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-image::before {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            border: 1px solid var(--accent-gold);
+            opacity: 0.3;
+        }
+
+        .philosophy-image::after {
+            content: 'Studio Interior';
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--medium-gray);
+        }
+
+        /* Expertise Section */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .expertise-card {
+            padding: 3rem;
+            border: 1px solid var(--light-gray);
+            background: white;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .expertise-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .expertise-icon {
+            width: 60px;
+            height: 60px;
+            border: 1px solid var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .expertise-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .expertise-card p {
+            color: var(--medium-gray);
+            line-height: 1.6;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            background: white;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .masonry-grid {
+            column-count: 3;
+            column-gap: 1.5rem;
+        }
+
+        .portfolio-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--light-gray);
+            cursor: pointer;
+        }
+
+        .portfolio-item:nth-child(2) { height: 400px; }
+        .portfolio-item:nth-child(3) { height: 300px; }
+        .portfolio-item:nth-child(5) { height: 350px; }
+
+        .portfolio-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-placeholder {
+            transform: scale(1.05);
+        }
+
+        .portfolio-placeholder::after {
+            content: 'Project View';
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--medium-gray);
+            font-size: 1rem;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(51, 51, 51, 0.9);
+            color: white;
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-gold);
+        }
+
+        .portfolio-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--bg-off-white);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            color: var(--medium-gray);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .contact-detail:last-of-type {
+            border-bottom: none;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border: 1px solid var(--light-gray);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--medium-gray);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--light-gray);
+            background: var(--bg-off-white);
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            color: var(--text-charcoal);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--accent-gold);
+            color: white;
+            border: none;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transition: left 0.3s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #b08d4b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-charcoal);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 3px solid var(--accent-gold);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--accent-gold);
+        }
+
+        .footer-text {
+            color: #888;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .philosophy-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .expertise-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: flex;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content {
+                padding: 2rem;
+                margin: 0 1rem;
+            }
+            
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .masonry-grid {
+                column-count: 1;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 4rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Shree <span>Design</span> Studio</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#philosophy">Philosophy</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-image">
+            <div class="hero-placeholder"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Elevating Spaces,<br>Redefining Life</h1>
+            <p>Architecture & Interior Design Studio</p>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy" id="philosophy">
+        <div class="section-header">
+            <h2>Our Philosophy</h2>
+            <p>Design Excellence in Odisha</p>
+        </div>
+        <div class="philosophy-content">
+            <div class="philosophy-text">
+                <h3>Crafting Timeless Spaces with Purpose</h3>
+                <p>At Shree Design Studio, we believe that exceptional architecture transcends mere construction. It is the art of creating environments that inspire, comfort, and elevate the human experience. Based in Rourkela, Odisha, our practice merges contemporary design principles with local sensibilities.</p>
+                <p>Every project begins with listening—understanding not just the physical space, but the dreams and aspirations of those who will inhabit it. Our commitment to excellence has earned us the trust of discerning clients across Eastern India.</p>
+                <div class="rating-box">
+                    <span class="stars">★★★★★</span>
+                    <div>
+                        <div style="font-family: 'Playfair Display', serif; font-size: 1.2rem;">4.6/5</div>
+                        <div class="rating-text">Client Satisfaction Rating</div>
+                    </div>
+                </div>
+            </div>
+            <div class="philosophy-image"></div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="expertise" id="expertise">
+        <div class="section-header">
+            <h2>Our Expertise</h2>
+            <p>Comprehensive Design Solutions</p>
+        </div>
+        <div class="expertise-grid">
+            <div class="expertise-card">
+                <div class="expertise-icon">◆</div>
+                <h3>Interior Design</h3>
+                <p>Curating harmonious interiors that balance aesthetics with functionality. From residential sanctuaries to commercial landmarks, we create spaces that reflect your unique identity.</p>
+            </div>
+            <div class="expertise-card">
+                <div class="expertise-icon">▢</div>
+                <h3>Architectural Planning</h3>
+                <p>Comprehensive architectural solutions that honor context and innovation. Our designs seamlessly integrate with their environment while pushing the boundaries of form and space.</p>
+            </div>
+            <div class="expertise-card">
+                <div class="expertise-icon">✦</div>
+                <h3>Landscape Design</h3>
+                <p>Creating outdoor environments that extend living spaces into nature. We design sustainable landscapes that thrive in Odisha's climate while providing year-round beauty.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="section-header">
+            <h2>Selected Works</h2>
+            <p>Portfolio</p>
+        </div>
+        <div class="masonry-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-placeholder" style="height: 300px;"></div>
+                <div class="portfolio-overlay">
+                    <h4>The Rourkela Residence</h4>
+                    <p>Residential Architecture</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-placeholder" style="height: 400px;"></div>
+                <div class="portfolio-overlay">
+                    <h4>Odisha Cultural Center</h4>
+                    <p>Commercial Design</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-placeholder" style="height: 300px;"></div>
+                <div class="portfolio-overlay">
+                    <h4>Steel City Office</h4>
+                    <p>Corporate Interior</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-placeholder" style="height: 350px;"></div>
+                <div class="portfolio-overlay">
+                    <h4>Garden Estate Villa</h4>
+                    <p>Landscape & Architecture</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-placeholder" style="height: 350px;"></div>
+                <div class="portfolio-overlay">
+                    <h4>Minimalist Pavilion</h4>
+                    <p>Conceptual Design</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-placeholder" style="height: 300px;"></div>
+                <div class="portfolio-overlay">
+                    <h4>Urban Loft</h4>
+                    <p>Interior Renovation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <h2>Begin Your Journey</h2>
+            <p>Book a Consultation</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Let's Create Something Exceptional</h3>
+                <p>Ready to transform your space? Schedule a consultation with our design team. We'll discuss your vision, explore possibilities, and outline the path to your dream environment.</p>
+                
+                <div class="contact-detail">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <div style="font-weight: 700; margin-bottom: 0.2rem;">Location</div>
+                        <div style="color: var(--medium-gray);">Rourkela, Odisha, India</div>
+                    </div>
+                </div>
+                
+                <div class="contact-detail">
+                    <div class="contact-icon">✉</div>
+                    <div>
+                        <div style="font-weight: 700; margin-bottom: 0.2rem;">Email</div>
+                        <div style="color: var(--medium-gray);">hello@shreedesignstudio.com</div>
+                    </div>
+                </div>
+                
+                <div class="contact-detail">
+                    <div class="contact-icon">☎</div>
+                    <div>
+                        <div style="font-weight: 700; margin-bottom: 0.2rem;">Phone</div>
+                        <div style="color: var(--medium-gray);">+91 98765 43210</div>
+                    </div>
+                </div>
+            </div>
+            
+            <form class="contact-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="+91 98765 43210">
+                </div>
+                <div class="form-group">
+                    <label>Project Type</label>
+                    <input type="text" placeholder="Residential / Commercial / Landscape">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea placeholder="Tell us about your project..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Request Consultation</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Shree <span>Design</span> Studio</div>
+            <p class="footer-text">© 2024 Shree Design Studio. Elevating spaces in Rourkela and beyond.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('.submit-btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Request Sent Successfully';
+            btn.style.background = '#333';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+                this.reset();
+            }, 3000);
+        });
+
+        // Scroll animation for sections
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.expertise-card, .portfolio-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+
