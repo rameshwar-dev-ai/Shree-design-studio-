@@ -3,162 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shree Design Studio | Architecture & Interior Design</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <title>Shree Design Studio | Luxury Architecture & Interiors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg-off-white: #f9f9f9;
-            --text-charcoal: #333333;
-            --accent-gold: #c5a059;
-            --light-gray: #e8e8e8;
-            --medium-gray: #888888;
+            --bg: #fdfcfb;
+            --text: #1a1a1a;
+            --gold: #b8860b; /* Professional Gold */
+            --dark: #2c2c2c;
+            --gray: #757575;
         }
         html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Lato', sans-serif;
-            background-color: var(--bg-off-white);
-            color: var(--text-charcoal);
-            line-height: 1.6;
-            font-weight: 300;
-        }
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 400; }
+        body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
 
         /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(249, 249, 249, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--light-gray);
+            position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.98);
+            z-index: 2000; padding: 1.2rem 8%; display: flex; justify-content: space-between;
+            align-items: center; border-bottom: 1px solid #eee;
         }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: 2px; }
-        .logo span { color: var(--accent-gold); }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--text-charcoal); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .logo { font-size: 1.6rem; letter-spacing: 1px; color: var(--dark); }
+        .logo span { color: var(--gold); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-size: 0.85rem; text-transform: uppercase; font-weight: 400; }
 
-        /* Hero Section - FIXED WITH REAL IMAGE */
+        /* Hero Section */
         .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-            color: white;
+            height: 90vh; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center; text-align: center; color: white;
         }
-        .hero-content {
-            padding: 3rem;
-            border: 1px solid rgba(255,255,255,0.3);
-            background: rgba(0,0,0,0.2);
-            backdrop-filter: blur(5px);
+        .hero-box { padding: 4rem; border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(4px); }
+        .hero h1 { font-size: 4rem; margin-bottom: 1rem; }
+        .hero p { letter-spacing: 5px; text-transform: uppercase; font-size: 1.1rem; }
+
+        /* Sections */
+        section { padding: 8rem 8%; max-width: 1400px; margin: 0 auto; }
+        .center-head { text-align: center; margin-bottom: 5rem; }
+        .center-head h2 { font-size: 3rem; margin-bottom: 1rem; }
+        .line { width: 50px; height: 2px; background: var(--gold); margin: 0 auto; }
+
+        /* Services Grid */
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
+        .card { padding: 3rem; background: white; border: 1px solid #f0f0f0; transition: 0.3s; }
+        .card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .card-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 1.5rem; }
+        .card h3 { margin-bottom: 1rem; font-size: 1.5rem; }
+
+        /* The Process Section */
+        .process-bg { background: #f4f1ea; }
+        .step-row { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; }
+        .step { text-align: center; flex: 1; min-width: 200px; }
+        .step-num { font-size: 3rem; font-family: 'Playfair Display'; color: rgba(184, 134, 11, 0.2); margin-bottom: -1.5rem; }
+
+        /* Testimonials */
+        .testimonial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .t-box { border-left: 3px solid var(--gold); padding-left: 2rem; font-style: italic; }
+
+        /* Contact Area */
+        .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+        .contact-form { display: grid; gap: 1.5rem; }
+        input, textarea { width: 100%; padding: 1.2rem; border: 1px solid #ddd; background: #fff; font-size: 1rem; }
+        .btn { padding: 1.2rem; background: var(--dark); color: white; border: none; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; }
+        .btn:hover { background: var(--gold); }
+
+        /* Floating WhatsApp */
+        .wa-float {
+            position: fixed; bottom: 30px; right: 30px; background: #25D366;
+            color: white; padding: 15px 25px; border-radius: 50px; text-decoration: none;
+            font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 3000;
+            display: flex; align-items: center; gap: 10px;
         }
-        .hero-content h1 { font-size: 3.5rem; margin-bottom: 1rem; color: white; }
-        .hero-content p { letter-spacing: 4px; text-transform: uppercase; font-size: 1rem; }
 
-        /* General Section Styling */
-        section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 4rem; }
-        .section-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
-        
-        .expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        .expertise-card { padding: 2rem; border: 1px solid var(--light-gray); background: white; }
-        .expertise-icon { font-size: 2rem; color: var(--accent-gold); margin-bottom: 1rem; }
-
-        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-        .contact-form { background: white; padding: 2rem; border: 1px solid var(--light-gray); }
-        .form-group { margin-bottom: 1rem; }
-        .form-group input, .form-group textarea { width: 100%; padding: 0.8rem; border: 1px solid var(--light-gray); margin-top: 5px; }
-        .submit-btn { width: 100%; padding: 1rem; background: var(--accent-gold); color: white; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; }
-
-        footer { background: #222; color: #888; padding: 2rem; text-align: center; font-size: 0.8rem; }
+        footer { background: var(--dark); color: #999; padding: 4rem 8%; text-align: center; border-top: 5px solid var(--gold); }
 
         @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
             .nav-links { display: none; }
-            .expertise-grid, .contact-container { grid-template-columns: 1fr; }
-            .hero-content h1 { font-size: 2rem; }
+            .contact-wrap, .testimonial-grid { grid-template-columns: 1fr; }
+            section { padding: 5rem 5%; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">Shree <span>Design</span> Studio</div>
+        <div class="logo">SHREE <span>STUDIO</span></div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#expertise">Expertise</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#contact">Consult</a></li>
         </ul>
     </nav>
 
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Elevating Spaces,<br>Redefining Life</h1>
-            <p>Architecture & Interior Design Studio</p>
+    <a href="https://wa.me/919876543210" class="wa-float" target="_blank">
+        <span>WhatsApp Us</span>
+    </a>
+
+    <section class="hero" id="home" style="padding: 0;">
+        <div class="hero-box">
+            <p>Rourkela's Premier Design Studio</p>
+            <h1>Defining Modern Luxury</h1>
+            <div class="line" style="background: white;"></div>
         </div>
     </section>
 
-    <section id="expertise">
-        <div class="section-header">
-            <h2>Our Expertise</h2>
-            <p>Design Excellence in Rourkela</p>
+    <section id="services">
+        <div class="center-head">
+            <h2>Our Services</h2>
+            <div class="line"></div>
         </div>
-        <div class="expertise-grid">
-            <div class="expertise-card">
-                <div class="expertise-icon">◆</div>
-                <h3>Interior Design</h3>
-                <p>Creating harmonious interiors that balance aesthetics with functionality for your home or office.</p>
-            </div>
-            <div class="expertise-card">
-                <div class="expertise-icon">▢</div>
+        <div class="service-grid">
+            <div class="card">
+                <div class="card-icon">🏛</div>
                 <h3>Architectural Planning</h3>
-                <p>Modern architectural solutions that combine innovation with local sensibilities in Odisha.</p>
+                <p>Blueprint and structural designs tailored for the unique landscape of Odisha.</p>
             </div>
-            <div class="expertise-card">
-                <div class="expertise-icon">✦</div>
+            <div class="card">
+                <div class="card-icon">🛋</div>
+                <h3>Interior Curation</h3>
+                <p>High-end residential and commercial interiors that balance function with art.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌳</div>
                 <h3>Landscape Design</h3>
-                <p>Sustainable outdoor environments designed to thrive in our local climate.</p>
+                <p>Creating outdoor escapes that integrate seamlessly with your architecture.</p>
             </div>
         </div>
     </section>
 
-    <section class="contact" id="contact">
-        <div class="section-header">
-            <h2>Get In Touch</h2>
+    <section class="process-bg" id="process">
+        <div class="center-head">
+            <h2>The Journey</h2>
+            <p>From Concept to Masterpiece</p>
+            <div class="line"></div>
         </div>
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Let's build your dream.</h3>
-                <p>Visit us or call to schedule a consultation at our Rourkela studio.</p>
+        <div class="step-row">
+            <div class="step">
+                <div class="step-num">01</div>
+                <h3>Vision</h3>
+                <p>Initial consultation to capture your dreams.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <h3>Design</h3>
+                <p>3D modeling and material selection.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <h3>Execution</h3>
+                <p>Precision building and final styling.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="center-head">
+            <h2>Client Voices</h2>
+            <div class="line"></div>
+        </div>
+        <div class="testimonial-grid">
+            <div class="t-box">
+                <p>"Shree Design Studio transformed our office in Rourkela into a modern workspace that everyone loves. Their attention to detail is unmatched."</p>
+                <p><strong>- Local Business Owner</strong></p>
+            </div>
+            <div class="t-box">
+                <p>"The best interior designers in the region. They understood exactly what we wanted for our home and delivered beyond expectations."</p>
+                <p><strong>- Residential Client</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-wrap">
+            <div>
+                <h2>Start Your Project</h2>
+                <p style="margin: 1.5rem 0;">Ready to elevate your space? Fill out the form or reach out directly via WhatsApp for a priority consultation.</p>
                 <div style="margin-top: 2rem;">
-                    <p><strong>📍 Location:</strong> Rourkela, Odisha</p>
-                    <p><strong>✉ Email:</strong> hello@shreedesignstudio.com</p>
-                    <p><strong>☎ WhatsApp:</strong> <a href="https://wa.me/919876543210" style="color: var(--accent-gold); text-decoration: none;">+91 98765 43210</a></p>
+                    <p><strong>Studio:</strong> Rourkela, Odisha</p>
+                    <p><strong>Direct Line:</strong> +91 98765 43210</p>
+                    <p><strong>Email:</strong> info@shreedesignstudio.com</p>
                 </div>
             </div>
             <form class="contact-form">
-                <div class="form-group"><input type="text" placeholder="Your Name" required></div>
-                <div class="form-group"><input type="email" placeholder="Your Email" required></div>
-                <div class="form-group"><textarea placeholder="Tell us about your project..."></textarea></div>
-                <button type="submit" class="submit-btn">Send Message</button>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <textarea rows="5" placeholder="Tell us about your space..."></textarea>
+                <button type="submit" class="btn">Send Request</button>
             </form>
         </div>
     </section>
 
     <footer>
-        <p>© 2026 Shree Design Studio | Rourkela, Odisha</p>
+        <div class="logo" style="color: white; margin-bottom: 1rem;">SHREE <span>STUDIO</span></div>
+        <p>© 2026 Shree Design Studio. Serving Rourkela and Eastern India.</p>
     </footer>
 
 </body>
 </html>
-
+            
