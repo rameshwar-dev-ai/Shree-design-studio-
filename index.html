@@ -595,57 +595,19 @@
 
   .project-img {
     width: 100%;
-    aspect-ratio: unset;
+    height: 100%;
+    object-fit: cover;
     display: block;
+    transition: transform 0.6s ease;
   }
-  .project-card:nth-child(1) .project-img,
-  .project-card:nth-child(2) .project-img { aspect-ratio: 4/3; }
-  .project-card:nth-child(3) .project-img,
-  .project-card:nth-child(4) .project-img,
-  .project-card:nth-child(5) .project-img { aspect-ratio: 1; }
+  .project-card:hover .project-img { transform: scale(1.05); }
 
-  .project-placeholder {
+  /* Video project styling */
+  .project-video {
     width: 100%;
     height: 100%;
-    min-height: 280px;
-    background: var(--dark-3);
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.4s;
-  }
-  .project-card:nth-child(1) .project-placeholder { background: linear-gradient(135deg, #1A1612 0%, #252018 60%, #1A1510 100%); }
-  .project-card:nth-child(2) .project-placeholder { background: linear-gradient(135deg, #121614 0%, #181E1A 60%, #101410 100%); }
-  .project-card:nth-child(3) .project-placeholder { background: linear-gradient(135deg, #16121A 0%, #1C1822 60%, #141218 100%); }
-  .project-card:nth-child(4) .project-placeholder { background: linear-gradient(135deg, #1A1412 0%, #221A14 60%, #181210 100%); }
-  .project-card:nth-child(5) .project-placeholder { background: linear-gradient(135deg, #121618 0%, #181E22 60%, #101418 100%); }
-
-  .project-placeholder-inner {
-    display: flex; flex-direction: column; align-items: center; gap: 16px;
-    opacity: 0.25;
-    transition: opacity 0.4s;
-  }
-  .project-card:hover .project-placeholder-inner { opacity: 0.35; }
-
-  .placeholder-arch {
-    width: 80px; height: 100px;
-    border: 1px solid var(--gold-pale);
-    border-radius: 50% 50% 0 0 / 40% 40% 0 0;
-  }
-  .placeholder-rect-row {
-    display: flex; gap: 8px;
-  }
-  .placeholder-rect {
-    width: 24px; height: 48px;
-    border: 1px solid rgba(201,168,76,0.5);
-  }
-  .placeholder-text {
-    font-family: 'Jost', sans-serif;
-    font-size: 0.6rem;
-    font-weight: 300;
-    letter-spacing: 0.25em;
-    color: var(--gold-pale);
-    text-transform: uppercase;
+    object-fit: cover;
+    display: block;
   }
 
   .project-overlay {
@@ -655,6 +617,7 @@
     padding: 28px;
     transform: translateY(8px);
     transition: transform 0.4s ease;
+    z-index: 2;
   }
   .project-card:hover .project-overlay { transform: translateY(0); }
 
@@ -692,6 +655,7 @@
     opacity: 0;
     transform: scale(0.8);
     transition: opacity 0.3s, transform 0.3s;
+    z-index: 3;
   }
   .project-card:hover .project-arrow { opacity: 1; transform: scale(1); }
 
@@ -880,7 +844,7 @@
     align-items: start;
   }
 
-  .contact-info {}
+  .contact-info { position: sticky; top: 120px; }
   .contact-tagline {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.1rem;
@@ -1006,9 +970,6 @@
     border-bottom: 1px solid rgba(201,168,76,0.08);
     margin-bottom: 36px;
     max-width: 1400px; margin-left: auto; margin-right: auto;
-    padding-bottom: 50px;
-    border-bottom: 1px solid rgba(201,168,76,0.08);
-    margin-bottom: 36px;
   }
   .footer-brand .logo-name { font-size: 1.1rem; }
   .footer-brand p {
@@ -1087,9 +1048,6 @@
     margin: 24px 0;
   }
 
-  /* Mobile hamburger hidden for now */
-  .nav-toggle { display: none; }
-
   @media (max-width: 1100px) {
     nav { padding: 22px 30px; }
     .nav-links { display: none; }
@@ -1097,17 +1055,15 @@
     .about { grid-template-columns: 1fr; gap: 60px; padding: 100px 30px; }
     .projects-section { padding: 100px 30px; }
     .projects-grid { grid-template-columns: 1fr 1fr; }
-    .project-card:nth-child(1) { grid-column: 1; }
-    .project-card:nth-child(2) { grid-column: 2; }
-    .project-card:nth-child(3) { grid-column: 1; }
-    .project-card:nth-child(4) { grid-column: 2; }
-    .project-card:nth-child(5) { grid-column: 1 / 3; }
+    .project-card:nth-child(1) { grid-column: 1 / 3; }
+    .project-card:nth-child(2) { grid-column: 1 / 3; }
     .services-section { padding: 100px 30px; }
     .services-grid { grid-template-columns: 1fr; }
     .service-item { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.1); }
     .blogs-section { padding: 100px 30px; }
     .blogs-grid { grid-template-columns: 1fr; }
     .contact-section { grid-template-columns: 1fr; gap: 60px; padding: 100px 30px; }
+    .contact-info { position: static; }
     footer { padding: 60px 30px 40px; }
     .footer-top { grid-template-columns: 1fr 1fr; }
     .hero-arch { display: none; }
@@ -1116,17 +1072,14 @@
 </head>
 <body>
 
-<!-- Custom cursor -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- NAV -->
 <nav id="mainNav">
   <a href="#" class="nav-logo">
     <div class="logo-mark">
       <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="1" y="1" width="42" height="42" stroke="#C9A84C" stroke-width="0.5"/>
-        <!-- Arch shape -->
         <path d="M10 38 L10 22 Q10 10 22 10 Q34 10 34 22 L34 38" stroke="#C9A84C" stroke-width="1" fill="none"/>
         <line x1="10" y1="34" x2="34" y2="34" stroke="#C9A84C" stroke-width="0.5"/>
         <line x1="18" y1="34" x2="18" y2="38" stroke="#C9A84C" stroke-width="1"/>
@@ -1151,7 +1104,6 @@
   <a href="#contact" class="nav-cta">Enquire Now</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
@@ -1161,7 +1113,7 @@
   <div class="hero-content">
     <div class="hero-eyebrow">
       <span class="eyebrow-line"></span>
-      <span class="eyebrow-text">Est. 2008 — Ahmedabad, India</span>
+      <span class="eyebrow-text">Est. 2008 — Architecture & Interior</span>
     </div>
     <h1 class="hero-headline">
       Where <em>Form</em><br>Meets<br>Purpose
@@ -1186,114 +1138,6 @@
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-strip">
-  <div class="marquee-track">
-    <span class="marquee-item"><span class="marquee-dot"></span>Residential Architecture</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Interior Design</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Commercial Spaces</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Landscape Design</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Urban Planning</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Heritage Restoration</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Sustainable Design</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Residential Architecture</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Interior Design</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Commercial Spaces</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Landscape Design</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Urban Planning</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Heritage Restoration</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Sustainable Design</span>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="about">
-    <div class="about-visual reveal">
-      <div class="about-img-frame">
-        <div class="about-img-inner">
-          <div class="about-blueprint">
-            <svg viewBox="0 0 240 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Blueprint style architectural drawing -->
-              <rect x="20" y="20" width="200" height="280" stroke="#C9A84C" stroke-width="0.5"/>
-              <!-- Arch window -->
-              <path d="M80 260 L80 180 Q80 120 120 120 Q160 120 160 180 L160 260" stroke="#C9A84C" stroke-width="1" fill="none"/>
-              <!-- Door -->
-              <rect x="100" y="220" width="40" height="40" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
-              <!-- Windows -->
-              <rect x="40" y="140" width="30" height="40" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
-              <rect x="170" y="140" width="30" height="40" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
-              <!-- Roof line -->
-              <polyline points="10,100 120,40 230,100" stroke="#C9A84C" stroke-width="0.8" fill="none"/>
-              <!-- Ground -->
-              <line x1="10" y1="300" x2="230" y2="300" stroke="#C9A84C" stroke-width="0.8"/>
-              <!-- Center circle -->
-              <circle cx="120" cy="80" r="8" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
-              <!-- Dimension lines -->
-              <line x1="20" y1="310" x2="220" y2="310" stroke="#C9A84C" stroke-width="0.3"/>
-              <line x1="20" y1="308" x2="20" y2="312" stroke="#C9A84C" stroke-width="0.3"/>
-              <line x1="220" y1="308" x2="220" y2="312" stroke="#C9A84C" stroke-width="0.3"/>
-            </svg>
-          </div>
-        </div>
-        <div class="about-stat-row">
-          <div class="stat-item">
-            <div class="stat-num">15+</div>
-            <div class="stat-label">Years</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">240</div>
-            <div class="stat-label">Projects</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">18</div>
-            <div class="stat-label">Awards</div>
-          </div>
-        </div>
-      </div>
-      <div class="about-frame-border"></div>
-    </div>
-
-    <div class="about-content">
-      <div class="reveal reveal-delay-1">
-        <div class="section-label">
-          <span class="section-label-line"></span>
-          <span class="section-label-text">About the Studio</span>
-        </div>
-        <h2 class="section-title">Crafting Spaces<br>with <em>Intention</em></h2>
-      </div>
-      <div class="gold-divider reveal reveal-delay-2"></div>
-      <p class="about-body reveal reveal-delay-2">
-        Founded in 2008, Shree Design Studio is an award-winning architecture and interior design practice based in Ahmedabad. We believe great architecture is born at the intersection of cultural sensitivity, spatial intelligence, and enduring craft. Every project we undertake is a deeply personal collaboration with our clients — a journey from vision to lived reality.
-      </p>
-      <div class="about-values reveal reveal-delay-3">
-        <div class="value-item">
-          <div class="value-icon">◈</div>
-          <div class="value-name">Precision</div>
-          <div class="value-desc">Meticulous attention to every detail, material, and proportion.</div>
-        </div>
-        <div class="value-item">
-          <div class="value-icon">◇</div>
-          <div class="value-name">Context</div>
-          <div class="value-desc">Design rooted in place, culture, and the lives of those within.</div>
-        </div>
-        <div class="value-item">
-          <div class="value-icon">◉</div>
-          <div class="value-name">Timelessness</div>
-          <div class="value-desc">Spaces that endure trends, growing more beautiful with time.</div>
-        </div>
-        <div class="value-item">
-          <div class="value-icon">◫</div>
-          <div class="value-name">Sustainability</div>
-          <div class="value-desc">Responsible design that honours the earth and future generations.</div>
-        </div>
-      </div>
-      <a href="#projects" class="btn-primary reveal reveal-delay-4"><span>View Our Projects</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
 <section class="projects-section" id="projects">
   <div class="projects-header">
     <div>
@@ -1307,23 +1151,12 @@
   </div>
 
   <div class="projects-grid">
-    <!-- Project 1 -->
     <div class="project-card reveal">
-      <div class="project-placeholder">
-        <div class="project-placeholder-inner">
-          <div class="placeholder-arch"></div>
-          <div class="placeholder-rect-row">
-            <div class="placeholder-rect"></div>
-            <div class="placeholder-rect"></div>
-            <div class="placeholder-rect"></div>
-          </div>
-          <span class="placeholder-text">Project Image</span>
-        </div>
-      </div>
+      <img src="1000027132.png" alt="Amber Residence" class="project-img">
       <div class="project-overlay">
         <div class="project-num">01</div>
         <div class="project-name">The Amber Residence</div>
-        <div class="project-type">Luxury Residential · Ahmedabad</div>
+        <div class="project-type">Luxury Residential · Modern Living</div>
       </div>
       <div class="project-arrow">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -1332,24 +1165,12 @@
       </div>
     </div>
 
-    <!-- Project 2 -->
     <div class="project-card reveal reveal-delay-1">
-      <div class="project-placeholder">
-        <div class="project-placeholder-inner">
-          <svg width="120" height="100" viewBox="0 0 120 100" fill="none">
-            <rect x="10" y="50" width="100" height="40" stroke="#C9A84C" stroke-width="0.8"/>
-            <rect x="20" y="30" width="80" height="20" stroke="#C9A84C" stroke-width="0.8"/>
-            <rect x="35" y="10" width="50" height="20" stroke="#C9A84C" stroke-width="0.8"/>
-            <line x1="55" y1="90" x2="55" y2="50" stroke="#C9A84C" stroke-width="0.5"/>
-            <line x1="65" y1="90" x2="65" y2="50" stroke="#C9A84C" stroke-width="0.5"/>
-          </svg>
-          <span class="placeholder-text">Project Image</span>
-        </div>
-      </div>
+      <img src="1000027133.png" alt="Skyline Hub" class="project-img">
       <div class="project-overlay">
         <div class="project-num">02</div>
         <div class="project-name">Skyline Corporate Hub</div>
-        <div class="project-type">Commercial · Surat</div>
+        <div class="project-type">Commercial · Urban Design</div>
       </div>
       <div class="project-arrow">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -1358,22 +1179,15 @@
       </div>
     </div>
 
-    <!-- Project 3 -->
     <div class="project-card reveal reveal-delay-2">
-      <div class="project-placeholder">
-        <div class="project-placeholder-inner">
-          <svg width="80" height="90" viewBox="0 0 80 90" fill="none">
-            <path d="M10 80 L10 50 Q10 10 40 10 Q70 10 70 50 L70 80" stroke="#C9A84C" stroke-width="0.8" fill="none"/>
-            <line x1="10" y1="80" x2="70" y2="80" stroke="#C9A84C" stroke-width="0.8"/>
-            <circle cx="40" cy="35" r="6" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
-          </svg>
-          <span class="placeholder-text">Project Image</span>
-        </div>
-      </div>
+      <video class="project-video" autoplay loop muted playsinline>
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-architecture-with-a-blue-sky-background-4217-large.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
       <div class="project-overlay">
         <div class="project-num">03</div>
-        <div class="project-name">Serenity Villa</div>
-        <div class="project-type">Residence · Vadodara</div>
+        <div class="project-name">Cinematic Spaces</div>
+        <div class="project-type">Digital Walkthrough · Interior</div>
       </div>
       <div class="project-arrow">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -1382,204 +1196,36 @@
       </div>
     </div>
 
-    <!-- Project 4 -->
     <div class="project-card reveal reveal-delay-3">
-      <div class="project-placeholder">
-        <div class="project-placeholder-inner">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-            <rect x="8" y="8" width="64" height="64" stroke="#C9A84C" stroke-width="0.5"/>
-            <rect x="18" y="18" width="44" height="44" stroke="#C9A84C" stroke-width="0.5"/>
-            <circle cx="40" cy="40" r="14" stroke="#C9A84C" stroke-width="0.8" fill="none"/>
-            <line x1="8" y1="40" x2="72" y2="40" stroke="#C9A84C" stroke-width="0.3"/>
-            <line x1="40" y1="8" x2="40" y2="72" stroke="#C9A84C" stroke-width="0.3"/>
+        <div style="height:100%; width:100%; background:var(--dark-3); display:flex; align-items:center; justify-content:center;">
+          <svg width="60" height="60" viewBox="0 0 80 80" fill="none" style="opacity:0.2">
+            <circle cx="40" cy="40" r="30" stroke="#C9A84C" stroke-width="0.5"/>
           </svg>
-          <span class="placeholder-text">Project Image</span>
         </div>
-      </div>
       <div class="project-overlay">
         <div class="project-num">04</div>
         <div class="project-name">The Pavilion Museum</div>
-        <div class="project-type">Cultural · Mumbai</div>
-      </div>
-      <div class="project-arrow">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M2 12L12 2M12 2H5M12 2V9" stroke="#C9A84C" stroke-width="1"/>
-        </svg>
+        <div class="project-type">Cultural · Institutional</div>
       </div>
     </div>
 
-    <!-- Project 5 -->
     <div class="project-card reveal reveal-delay-4">
-      <div class="project-placeholder">
-        <div class="project-placeholder-inner">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-            <polyline points="5,70 40,10 75,70" stroke="#C9A84C" stroke-width="0.8" fill="none"/>
-            <polyline points="15,70 40,25 65,70" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
-            <line x1="5" y1="70" x2="75" y2="70" stroke="#C9A84C" stroke-width="0.8"/>
-            <rect x="32" y="50" width="16" height="20" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
+        <div style="height:100%; width:100%; background:var(--dark-3); display:flex; align-items:center; justify-content:center;">
+          <svg width="60" height="60" viewBox="0 0 80 80" fill="none" style="opacity:0.2">
+            <polyline points="10,70 40,10 70,70" stroke="#C9A84C" stroke-width="0.5"/>
           </svg>
-          <span class="placeholder-text">Project Image</span>
         </div>
-      </div>
       <div class="project-overlay">
         <div class="project-num">05</div>
         <div class="project-name">Zenith Boutique Hotel</div>
-        <div class="project-type">Hospitality · Udaipur</div>
-      </div>
-      <div class="project-arrow">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M2 12L12 2M12 2H5M12 2V9" stroke="#C9A84C" stroke-width="1"/>
-        </svg>
+        <div class="project-type">Hospitality · Resort</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="services-section">
-    <div class="section-label reveal">
-      <span class="section-label-line"></span>
-      <span class="section-label-text">What We Offer</span>
-    </div>
-    <h2 class="section-title reveal reveal-delay-1">Our <em>Expertise</em></h2>
-
-    <div class="services-grid">
-      <div class="service-item reveal">
-        <div class="service-num">01</div>
-        <div class="service-name">Architectural Design</div>
-        <p class="service-desc">From concept sketches to construction documentation, we deliver complete architectural solutions for residential, commercial, and institutional projects of all scales.</p>
-        <a href="#contact" class="service-link">Learn More →</a>
-      </div>
-      <div class="service-item reveal reveal-delay-1">
-        <div class="service-num">02</div>
-        <div class="service-name">Interior Design</div>
-        <p class="service-desc">Curating interiors that tell your story — through material selection, spatial planning, bespoke furniture, and lighting design that transforms every room into an experience.</p>
-        <a href="#contact" class="service-link">Learn More →</a>
-      </div>
-      <div class="service-item reveal reveal-delay-2">
-        <div class="service-num">03</div>
-        <div class="service-name">Landscape & Exterior</div>
-        <p class="service-desc">Extending design language beyond walls — outdoor spaces, courtyards, terraces, and gardens conceived as natural extensions of the architecture they embrace.</p>
-        <a href="#contact" class="service-link">Learn More →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BLOGS -->
-<section class="blogs-section" id="blogs">
-  <div class="blogs-header">
-    <div>
-      <div class="section-label reveal">
-        <span class="section-label-line"></span>
-        <span class="section-label-text">Studio Journal</span>
-      </div>
-      <h2 class="section-title reveal reveal-delay-1">Thoughts &amp; <em>Insights</em></h2>
-    </div>
-    <a href="#" class="view-all reveal">All Articles →</a>
-  </div>
-
-  <div class="blogs-grid">
-    <!-- Blog 1 -->
-    <div class="blog-card reveal">
-      <div class="blog-img">
-        <div class="blog-img-inner blog-bg-1">
-          <svg width="160" height="140" viewBox="0 0 160 140" fill="none">
-            <rect x="20" y="20" width="120" height="100" stroke="#C9A84C" stroke-width="0.5"/>
-            <path d="M40 120 L40 70 Q40 30 80 30 Q120 30 120 70 L120 120" stroke="#C9A84C" stroke-width="0.8" fill="none"/>
-            <circle cx="80" cy="55" r="10" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
-            <line x1="60" y1="120" x2="60" y2="90" stroke="#C9A84C" stroke-width="0.5"/>
-            <line x1="100" y1="120" x2="100" y2="90" stroke="#C9A84C" stroke-width="0.5"/>
-          </svg>
-        </div>
-        <span class="blog-cat">Architecture</span>
-      </div>
-      <div class="blog-body">
-        <div class="blog-meta">June 12, 2025 &nbsp;·&nbsp; 6 min read</div>
-        <h3 class="blog-title">The Return of the Arch: Why Ancient Forms Are Reshaping Modern Architecture</h3>
-        <p class="blog-excerpt">From Zaha Hadid's swooping curves to the resurgence of traditional arched doorways in contemporary Indian homes, we explore why the circular arc has become the defining motif of 21st-century design.</p>
-        <a href="#" class="blog-read">Read Article →</a>
-      </div>
-    </div>
-
-    <!-- Blog 2 -->
-    <div class="blog-card reveal reveal-delay-1">
-      <div class="blog-img">
-        <div class="blog-img-inner blog-bg-2">
-          <svg width="160" height="140" viewBox="0 0 160 140" fill="none">
-            <rect x="10" y="10" width="140" height="120" stroke="#C9A84C" stroke-width="0.5"/>
-            <rect x="30" y="30" width="100" height="80" stroke="#C9A84C" stroke-width="0.3"/>
-            <line x1="80" y1="10" x2="80" y2="130" stroke="#C9A84C" stroke-width="0.3"/>
-            <line x1="10" y1="70" x2="150" y2="70" stroke="#C9A84C" stroke-width="0.3"/>
-            <circle cx="80" cy="70" r="25" stroke="#C9A84C" stroke-width="0.6" fill="none"/>
-            <circle cx="80" cy="70" r="8" stroke="#C9A84C" stroke-width="0.4" fill="none"/>
-          </svg>
-        </div>
-        <span class="blog-cat">Sustainability</span>
-      </div>
-      <div class="blog-body">
-        <div class="blog-meta">May 28, 2025 &nbsp;·&nbsp; 8 min read</div>
-        <h3 class="blog-title">Building with the Climate: Passive Design Strategies for the Indian Subcontinent</h3>
-        <p class="blog-excerpt">How Vastu-inspired orientation, deep-set fenestration, and natural ventilation shafts can dramatically reduce energy consumption while creating spaces of profound sensory comfort.</p>
-        <a href="#" class="blog-read">Read Article →</a>
-      </div>
-    </div>
-
-    <!-- Blog 3 -->
-    <div class="blog-card reveal reveal-delay-2">
-      <div class="blog-img">
-        <div class="blog-img-inner blog-bg-3">
-          <svg width="160" height="140" viewBox="0 0 160 140" fill="none">
-            <polyline points="10,130 80,20 150,130" stroke="#C9A84C" stroke-width="0.8" fill="none"/>
-            <polyline points="30,130 80,45 130,130" stroke="#C9A84C" stroke-width="0.4" fill="none"/>
-            <line x1="10" y1="130" x2="150" y2="130" stroke="#C9A84C" stroke-width="0.8"/>
-            <rect x="65" y="95" width="30" height="35" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
-            <rect x="20" y="80" width="25" height="25" stroke="#C9A84C" stroke-width="0.3" fill="none"/>
-            <rect x="115" y="80" width="25" height="25" stroke="#C9A84C" stroke-width="0.3" fill="none"/>
-          </svg>
-        </div>
-        <span class="blog-cat">Interior Design</span>
-      </div>
-      <div class="blog-body">
-        <div class="blog-meta">April 15, 2025 &nbsp;·&nbsp; 5 min read</div>
-        <h3 class="blog-title">Stone, Teak & Terrazzo: A Guide to Material Layering in Luxury Indian Interiors</h3>
-        <p class="blog-excerpt">The art of combining indigenous materials — Kota stone, reclaimed teak, Rajasthani jali — with contemporary finishes to create interiors that feel rooted, rich, and resolutely modern.</p>
-        <a href="#" class="blog-read">Read Article →</a>
-      </div>
-    </div>
-
-    <!-- Blog 4 -->
-    <div class="blog-card reveal reveal-delay-3">
-      <div class="blog-img">
-        <div class="blog-img-inner blog-bg-4">
-          <svg width="160" height="140" viewBox="0 0 160 140" fill="none">
-            <rect x="15" y="30" width="50" height="100" stroke="#C9A84C" stroke-width="0.6" fill="none"/>
-            <rect x="75" y="15" width="70" height="115" stroke="#C9A84C" stroke-width="0.6" fill="none"/>
-            <rect x="25" y="50" width="30" height="20" stroke="#C9A84C" stroke-width="0.3" fill="none"/>
-            <rect x="25" y="80" width="30" height="20" stroke="#C9A84C" stroke-width="0.3" fill="none"/>
-            <rect x="85" y="35" width="20" height="25" stroke="#C9A84C" stroke-width="0.3" fill="none"/>
-            <rect x="115" y="35" width="20" height="25" stroke="#C9A84C" stroke-width="0.3" fill="none"/>
-            <rect x="85" y="75" width="50" height="35" stroke="#C9A84C" stroke-width="0.3" fill="none"/>
-            <line x1="15" y1="130" x2="145" y2="130" stroke="#C9A84C" stroke-width="0.8"/>
-          </svg>
-        </div>
-        <span class="blog-cat">Urban Design</span>
-      </div>
-      <div class="blog-body">
-        <div class="blog-meta">March 3, 2025 &nbsp;·&nbsp; 7 min read</div>
-        <h3 class="blog-title">Density & Delight: Rethinking Mixed-Use Development in Tier-2 Indian Cities</h3>
-        <p class="blog-excerpt">As Surat, Indore, and Vadodara grow at unprecedented speed, we argue for a new model of compact, walkable, human-scaled urban fabric that preserves community and memory.</p>
-        <a href="#" class="blog-read">Read Article →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
 <section id="contact">
   <div class="contact-section">
-    <!-- Info side -->
     <div class="contact-info">
       <div class="section-label reveal">
         <span class="section-label-line"></span>
@@ -1593,27 +1239,21 @@
       <div class="contact-details reveal reveal-delay-3">
         <div class="contact-item">
           <div class="contact-item-label">Studio Address</div>
-          <div class="contact-item-value">301, The Design Quarter<br>Prahlad Nagar, Ahmedabad<br>Gujarat — 380 015</div>
+          <div class="contact-item-value">Civil Township,<br>Rourkela, Odisha 769012</div>
         </div>
         <div class="contact-item">
           <div class="contact-item-label">Phone</div>
-          <div class="contact-item-value">+91 79 4001 8899</div>
+          <div class="contact-item-value">+91 79785 35165</div>
         </div>
         <div class="contact-item">
           <div class="contact-item-label">Email</div>
           <div class="contact-item-value">hello@shreedesignstudio.in</div>
         </div>
-        <div class="contact-item">
-          <div class="contact-item-label">Studio Hours</div>
-          <div class="contact-item-value">Mon – Sat, 10:00 AM – 7:00 PM</div>
         </div>
-      </div>
     </div>
 
-    <!-- Form side -->
     <div class="contact-form reveal reveal-delay-2">
       <h3 class="form-title">Send Us a Message</h3>
-
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Your Name</label>
@@ -1624,28 +1264,10 @@
           <input type="email" class="form-input" placeholder="email@example.com">
         </div>
       </div>
-
-      <div class="form-group">
-        <label class="form-label">Postal / Street Address</label>
-        <input type="text" class="form-input" placeholder="Your city or address">
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Phone Number</label>
-          <input type="tel" class="form-input" placeholder="+91 00000 00000">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Project Type</label>
-          <input type="text" class="form-input" placeholder="Residential, Commercial...">
-        </div>
-      </div>
-
       <div class="form-group">
         <label class="form-label">Your Message</label>
-        <textarea class="form-textarea" placeholder="Tell us about your project, vision, or any questions you may have…"></textarea>
+        <textarea class="form-textarea" placeholder="Tell us about your project vision…"></textarea>
       </div>
-
       <button class="form-btn" onclick="handleFormSubmit(this)">
         <span>Send Message</span>
         <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
@@ -1656,74 +1278,18 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div class="nav-logo" style="margin-bottom:16px;">
-        <div class="logo-mark">
-          <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="42" height="42" stroke="#C9A84C" stroke-width="0.5"/>
-            <path d="M10 38 L10 22 Q10 10 22 10 Q34 10 34 22 L34 38" stroke="#C9A84C" stroke-width="1" fill="none"/>
-            <line x1="10" y1="34" x2="34" y2="34" stroke="#C9A84C" stroke-width="0.5"/>
-            <line x1="18" y1="34" x2="18" y2="38" stroke="#C9A84C" stroke-width="1"/>
-            <line x1="26" y1="34" x2="26" y2="38" stroke="#C9A84C" stroke-width="1"/>
-            <circle cx="22" cy="17" r="2" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
-          </svg>
-        </div>
-        <div class="logo-text-wrap">
-          <span class="logo-name">Shree Design</span>
-          <span class="logo-sub">Studio — Architecture</span>
-        </div>
-      </div>
-      <p>Crafting architectural spaces where form, function, and culture converge. Ahmedabad, India.</p>
-    </div>
-
-    <div>
-      <div class="footer-col-title">Navigation</div>
-      <ul class="footer-links">
-        <li><a href="#about">About Studio</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#blogs">Journal</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <div class="footer-col-title">Services</div>
-      <ul class="footer-links">
-        <li><a href="#">Architecture</a></li>
-        <li><a href="#">Interior Design</a></li>
-        <li><a href="#">Landscape</a></li>
-        <li><a href="#">Consultancy</a></li>
-        <li><a href="#">3D Visualization</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <div class="footer-col-title">Connect</div>
-      <ul class="footer-links">
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">Houzz</a></li>
-        <li><a href="#">LinkedIn</a></li>
-        <li><a href="#">Behance</a></li>
-      </ul>
-    </div>
-  </div>
-
   <div class="footer-bottom">
     <div class="footer-copy">© 2025 Shree Design Studio. All Rights Reserved.</div>
     <div class="footer-socials">
-      <a href="#" class="social-link">Privacy</a>
-      <a href="#" class="social-link">Terms</a>
-      <a href="#" class="social-link">Sitemap</a>
+      <a href="#" class="social-link">Instagram</a>
+      <a href="#" class="social-link">LinkedIn</a>
     </div>
   </div>
 </footer>
 
 <script>
-  // Custom cursor
+  // Cursor Logic
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx = 0, my = 0, rx = 0, ry = 0;
@@ -1743,7 +1309,7 @@
   }
   animateRing();
 
-  document.querySelectorAll('a, button, .project-card, .blog-card, .value-item, .service-item').forEach(el => {
+  document.querySelectorAll('a, button, .project-card').forEach(el => {
     el.addEventListener('mouseenter', () => { cursor.classList.add('expand'); ring.classList.add('expand'); });
     el.addEventListener('mouseleave', () => { cursor.classList.remove('expand'); ring.classList.remove('expand'); });
   });
@@ -1754,7 +1320,7 @@
     nav.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // Scroll reveal
+  // Reveal Logic
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -1763,31 +1329,12 @@
         observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 
-  // Form submit
   function handleFormSubmit(btn) {
-    btn.querySelector('span').textContent = 'Message Sent ✓';
-    btn.style.background = '#2A4A2A';
-    btn.style.color = '#7AB87A';
-    setTimeout(() => {
-      btn.querySelector('span').textContent = 'Send Message';
-      btn.style.background = '';
-      btn.style.color = '';
-    }, 3500);
+    btn.querySelector('span').textContent = 'Sent Successfully ✓';
   }
-
-  // Smooth scroll for nav links
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
 </script>
 </body>
 </html>
